@@ -8,7 +8,7 @@ from app.database import get_db
 router = APIRouter(tags=["Tasks"])
 
 
-# ✅ CREATE TASK
+# CREATE TASK
 @router.post("/tasks", response_model=schemas.TaskResponse)
 def create_task(
     task: schemas.TaskCreate,
@@ -28,7 +28,7 @@ def create_task(
     return new_task
 
 
-# ✅ GET MY TASKS
+# GET MY TASKS
 @router.get("/tasks", response_model=List[schemas.TaskResponse])
 def get_tasks(
     db: Session = Depends(get_db),
@@ -41,7 +41,7 @@ def get_tasks(
     return tasks
 
 
-# ✅ UPDATE TASK
+# UPDATE TASK
 @router.put("/tasks/{task_id}", response_model=schemas.TaskResponse)
 def update_task(
     task_id: int,
@@ -73,7 +73,7 @@ def update_task(
     return task
 
 
-# ✅ DELETE TASK
+# DELETE TASK
 @router.delete("/tasks/{task_id}")
 def delete_task(
     task_id: int,

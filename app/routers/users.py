@@ -8,7 +8,7 @@ from app.database import get_db
 router = APIRouter(tags=["Users"])
 
 
-# ✅ REGISTER
+# REGISTER
 @router.post("/register", response_model=schemas.UserResponse)
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
@@ -39,7 +39,7 @@ def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 
-# ✅ LOGIN
+# LOGIN
 @router.post("/login", response_model=schemas.Token)
 def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
@@ -67,7 +67,7 @@ def login(
     }
 
 
-# ✅ PROFILE (Protected)
+# PROFILE (Protected)
 @router.get("/profile", response_model=schemas.UserResponse)
 def profile(
     current_user: models.User = Depends(auth.get_current_user)
@@ -75,7 +75,7 @@ def profile(
     return current_user
 
 
-# ✅ ADMIN ONLY — Get All Users
+# ADMIN ONLY - Get All Users
 @router.get("/admin/users")
 def get_all_users(
     db: Session = Depends(get_db),
